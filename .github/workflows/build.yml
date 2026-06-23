@@ -33,9 +33,9 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
-      - name: 🤖 Build APK
+      - name: 🤖 Build APK (local)
         working-directory: ./DramChat
-        run: eas build --platform android --profile preview --non-interactive --output ../DramChat.apk
+        run: eas build --platform android --profile preview --non-interactive --local --output ../DramChat.apk
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
 

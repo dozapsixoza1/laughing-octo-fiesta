@@ -26,6 +26,20 @@ jobs:
         working-directory: ./DramChat
         run: npm install
 
+      - name: 🔧 Fix eas.json
+        working-directory: ./DramChat
+        run: |
+          cat > eas.json << 'EOF'
+          {
+            "cli": { "version": ">= 10.0.0" },
+            "build": {
+              "preview": {
+                "android": { "buildType": "apk" }
+              }
+            }
+          }
+          EOF
+
       - name: 🔧 Setup EAS
         uses: expo/expo-github-action@v8
         with:

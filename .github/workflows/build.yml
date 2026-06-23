@@ -14,12 +14,16 @@ jobs:
       - name: 🛎 Checkout
         uses: actions/checkout@v4
 
+      - name: 📦 Unzip DramChat
+        run: unzip DramChat.zip
+
       - name: 🏗 Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
       - name: 📦 Install dependencies
+        working-directory: ./DramChat
         run: npm install
 
       - name: 🔧 Setup EAS
@@ -30,7 +34,8 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: 🤖 Build APK
-        run: eas build --platform android --profile preview --non-interactive --output ./DramChat.apk
+        working-directory: ./DramChat
+        run: eas build --platform android --profile preview --non-interactive --output ../DramChat.apk
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
 
